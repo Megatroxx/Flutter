@@ -33,27 +33,31 @@ class MyHomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: Center(
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'ФИО: Бакальская Софья Юрьевна',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.red,
-              ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const <Widget>[
+                Text(
+                  'ФИО: Бакальская Софья Юрьевна',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+                SizedBox(height: 12),
+                Text(
+                  'Номер группы: ИКБО-06-22',
+                ),
+                SizedBox(height: 12),
+                Text(
+                  'Номер студенческого билета: 22И1580',
+                ),
+              ],
             ),
-            const SizedBox(height: 12),
-            const Text(
-              'Номер группы: ИКБО-06-22',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 12),
-            const Text(
-              'Номер студенческого билета: 22И1580',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
+
+            const SizedBox(width: 30),
 
             ElevatedButton(
               onPressed: null,
