@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 0:
         return 'Вакансии';
       case 1:
-        return 'Избранные вакансии';
+        return 'Избранное';
       case 2:
         return 'Отклики';
       default:
