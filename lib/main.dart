@@ -36,6 +36,25 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Text(
+              'ФИО: Бакальская Софья Юрьевна',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.red,
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Номер группы: ИКБО-06-22',
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Номер студенческого билета: 22И1580',
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+
             ElevatedButton(
               onPressed: null,
               style: ButtonStyle(
@@ -48,7 +67,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Text('Текст на кнопке'),
+              child: const Text('Текст на кнопке'),
             ),
           ],
         ),
