@@ -53,15 +53,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       ),
     );
   }
-
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       itemCount: _favoriteVacancies.length,
       itemBuilder: (context, index) {
         final item =
         _favoriteVacancies[_favoriteVacancies.length - 1 - index];
         return _buildFavoriteItem(item);
+      },
+      separatorBuilder: (context, index) {
+        return const Divider();
       },
     );
   }

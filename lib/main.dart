@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'pages/models/vacancy.dart';
 import 'screens/catalog_screen.dart';
 import 'screens/favourites_screen.dart';
-
+import 'screens/applications_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,13 +36,27 @@ class _MyHomePageState extends State<MyHomePage> {
   late final List<Widget> _screens = const [
     CatalogScreen(),
     FavoritesScreen(),
+    ApplicationsScreen(),
   ];
+
+  String _titleByIndex(int index) {
+    switch (index) {
+      case 0:
+        return 'Вакансии';
+      case 1:
+        return 'Избранные вакансии';
+      case 2:
+        return 'Отклики';
+      default:
+        return 'Vacancies Demo';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_currentIndex == 0 ? 'Вакансии' : 'Избранные вакансии'),
+        title: Text(_titleByIndex(_currentIndex)),
       ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -58,6 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.star_border),
             label: 'Избранное',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.send_outlined),
+            label: 'Отклики',
           ),
         ],
       ),
