@@ -46,18 +46,18 @@ class MyHomePage extends StatelessWidget {
                     color: Colors.red,
                   ),
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 20),
                 Text(
                   'Номер группы: ИКБО-06-22',
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 20),
                 Text(
                   'Номер студенческого билета: 22И1580',
                 ),
               ],
             ),
 
-            const SizedBox(width: 30),
+            const SizedBox(width: 60),
 
             ElevatedButton(
               onPressed: null,
