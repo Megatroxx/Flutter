@@ -39,6 +39,9 @@ class MyHomePage extends StatelessWidget {
             Text(
               'ФИО: Бакальская Софья Юрьевна',
               textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.red,
+              ),
             ),
             SizedBox(height: 12),
             Text(
