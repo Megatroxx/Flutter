@@ -21,10 +21,102 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Vacancy Wizard',
       theme: ThemeData(useMaterial3: true),
-      home: const VacancyWizardPage(),
+      home: const JobsListsPage(),
     );
   }
 }
+
+class JobsListsPage extends StatefulWidget {
+  const JobsListsPage({super.key});
+
+  @override
+  State<JobsListsPage> createState() => _JobsListsPageState();
+}
+
+class _JobsListsPageState extends State<JobsListsPage> {
+  List<Map<String, dynamic>> jobs = [
+    {"profession": "Flutter разработчик", "salary": 180000},
+    {"profession": "Backend разработчик", "salary": 200000},
+    {"profession": "UI/UX дизайнер", "salary": 150000},
+    {"profession": "QA тестировщик", "salary": 140000},
+    {"profession": "Data аналитик", "salary": 190000},
+    {"profession": "Frontend разработчик", "salary": 170000},
+    {"profession": "DevOps инженер", "salary": 210000},
+    {"profession": "Project менеджер", "salary": 160000},
+    {"profession": "Mobile разработчик", "salary": 175000},
+    {"profession": "Системный аналитик", "salary": 185000},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Списки профессий')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: Column(
+          children: jobs.map((job) {
+            return _buildVacancyItem(
+              job["profession"],
+              job["salary"].toDouble(),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+
+Widget _buildVacancyItem(String profession, double salary) {
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Row(
+      children: [
+        Text(
+          profession,
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const Spacer(),
+        Text(
+          '${salary.toStringAsFixed(0)} ₽',
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.green,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 enum WorkFormat { office, hybrid, remote }
 
@@ -41,7 +133,7 @@ class _VacancyWizardPageState extends State<VacancyWizardPage> {
   final _professionController = TextEditingController();
   final _cityController = TextEditingController();
 
-  bool? _fullTime; // null пока не выбрал(а)
+  bool? _fullTime;
   WorkFormat? _format;
   bool? _subscription;
 
@@ -182,3 +274,4 @@ class _VacancyWizardPageState extends State<VacancyWizardPage> {
     );
   }
 }
+
