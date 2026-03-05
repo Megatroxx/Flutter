@@ -39,25 +39,33 @@ class MyHomePage extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.only(right: 100),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text(
-                    'ФИО: Бакальская Софья Юрьевна',
-                    style: TextStyle(
-                      color: Colors.red,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const <Widget>[
+                    Text(
+                      'ФИО: Бакальская Софья Юрьевна',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Номер группы: ИКБО-06-22',
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Номер студенческого билета: 22И1580',
-                  ),
-                ],
+                    SizedBox(height: 20),
+                    Text(
+                      'Номер группы: ИКБО-06-22',
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      'Номер студенческого билета: 22И1580',
+                    ),
+                  ],
+                ),
               ),
             ),
 
