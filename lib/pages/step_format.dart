@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/pages/wizard.dart';
 import '../main.dart'; // для enum WorkFormat
 
 class StepFormat extends StatelessWidget {
