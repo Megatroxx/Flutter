@@ -35,23 +35,20 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'ФИО: Бакальская Софья Юрьевна',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.red,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: null,
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                foregroundColor: WidgetStatePropertyAll(Colors.white),
+                elevation: WidgetStatePropertyAll(8),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
               ),
-            ),
-            SizedBox(height: 12),
-            Text(
-              'Номер группы: ИКБО-06-22',
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 12),
-            Text(
-              'Номер студенческого билета: 22И1580',
-              textAlign: TextAlign.center,
+              child: Text('Текст на кнопке'),
             ),
           ],
         ),
