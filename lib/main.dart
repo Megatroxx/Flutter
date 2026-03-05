@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Данные студента'),
+      home: const MyHomePage(title: 'Счетчик'),
     );
   }
 }
@@ -81,35 +81,44 @@ class MyHomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            const StudentInfo(
-              fullName: 'Бакальская Софья Юрьевна',
-              group: 'ИКБО-06-22',
-              studentId: '22И1580',
-              backgroundColor: Colors.white,
-              textColor: Colors.red,
-            ),
-
-            ElevatedButton(
-              onPressed: null,
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                foregroundColor: WidgetStatePropertyAll(Colors.white),
-                elevation: WidgetStatePropertyAll(8),
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
-              child: const Text('Текст на кнопке'),
-            ),
-          ],
-        ),
+        child: SimpleCounter()
       ),
+    );
+  }
+}
+
+class SimpleCounter extends StatefulWidget {
+  const SimpleCounter({super.key});
+
+  @override
+  State<SimpleCounter> createState() => _SimpleCounterState();
+}
+
+class _SimpleCounterState extends State<SimpleCounter> {
+
+  int _count = 0;
+
+  void _increment() {
+    setState(() {
+      _count++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          'Количество нажатий: $_count',
+          style: const TextStyle(fontSize: 20),
+        ),
+        const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: _increment,
+          child: const Text('Нажми меня'),
+        ),
+      ],
     );
   }
 }
