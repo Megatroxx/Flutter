@@ -4,10 +4,10 @@ class ApplicationsScreen extends StatefulWidget {
   const ApplicationsScreen({super.key});
 
   @override
-  State<ApplicationsScreen> createState() => _ApplicationsScreenState();
+  State<ApplicationsScreen> createState() => ApplicationsScreenState();
 }
 
-class _ApplicationsScreenState extends State<ApplicationsScreen> {
+class ApplicationsScreenState extends State<ApplicationsScreen> {
   final List<Map<String, dynamic>> _applications = [
     {"id": "a1", "profession": "Flutter разработчик", "company": "Яндекс", "status": "Отправлено"},
     {"id": "a2", "profession": "Backend разработчик", "company": "VK", "status": "На рассмотрении"},
@@ -29,6 +29,86 @@ class _ApplicationsScreenState extends State<ApplicationsScreen> {
     });
   }
 
+  void showAddDialog() {
+    final professionController = TextEditingController();
+    final companyController = TextEditingController();
+    final statusController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Добавить отклик'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: professionController,
+                decoration: const InputDecoration(
+                  labelText: 'Вакансия',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: companyController,
+                decoration: const InputDecoration(
+                  labelText: 'Компания',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: statusController,
+                decoration: const InputDecoration(
+                  labelText: 'Статус',
+                  hintText: 'Напр.: Отправлено',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                professionController.dispose();
+                companyController.dispose();
+                statusController.dispose();
+                Navigator.pop(context);
+              },
+              child: const Text('Отмена'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final profession = professionController.text.trim();
+                final company = companyController.text.trim();
+                final status = statusController.text.trim();
+
+                if (profession.isEmpty || company.isEmpty || status.isEmpty) return;
+
+                setState(() {
+                  final id = DateTime.now().microsecondsSinceEpoch.toString();
+                  _applications.add({
+                    "id": id,
+                    "profession": profession,
+                    "company": company,
+                    "status": status,
+                  });
+                });
+
+                professionController.dispose();
+                companyController.dispose();
+                statusController.dispose();
+                Navigator.pop(context);
+              },
+              child: const Text('Добавить'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget _buildApplicationItem(Map<String, dynamic> item) {
     final String id = item["id"];
     final String profession = item["profession"];
@@ -36,7 +116,7 @@ class _ApplicationsScreenState extends State<ApplicationsScreen> {
     final String status = item["status"];
 
     return Container(
-      key: ValueKey(id),
+      key: ValueKey(id), // ✅ корректное сопоставление
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -66,11 +146,7 @@ class _ApplicationsScreenState extends State<ApplicationsScreen> {
           const SizedBox(width: 10),
           GestureDetector(
             onTap: () => _deleteById(id),
-            child: const Icon(
-              Icons.delete,
-              color: Colors.red,
-              size: 28,
-            ),
+            child: const Icon(Icons.delete, color: Colors.red, size: 28),
           ),
         ],
       ),

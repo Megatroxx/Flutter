@@ -4,10 +4,10 @@ class CatalogScreen extends StatefulWidget {
   const CatalogScreen({super.key});
 
   @override
-  State<CatalogScreen> createState() => _CatalogScreenState();
+  State<CatalogScreen> createState() => CatalogScreenState();
 }
 
-class _CatalogScreenState extends State<CatalogScreen> {
+class CatalogScreenState extends State<CatalogScreen> {
   final List<Map<String, dynamic>> _vacancies = [
     {"id": "v1", "profession": "Flutter разработчик", "salary": 180000},
     {"id": "v2", "profession": "Backend разработчик", "salary": 200000},
@@ -27,13 +27,80 @@ class _CatalogScreenState extends State<CatalogScreen> {
     });
   }
 
+  void showAddDialog() {
+    final professionController = TextEditingController();
+    final salaryController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Добавить вакансию'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: professionController,
+                decoration: const InputDecoration(
+                  labelText: 'Профессия',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: salaryController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: 'Зарплата (₽)',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                professionController.dispose();
+                salaryController.dispose();
+                Navigator.pop(context);
+              },
+              child: const Text('Отмена'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final profession = professionController.text.trim();
+                final salary = int.tryParse(salaryController.text.trim());
+
+                if (profession.isEmpty || salary == null) return;
+
+                setState(() {
+                  final id = DateTime.now().microsecondsSinceEpoch.toString();
+                  _vacancies.add({
+                    "id": id,
+                    "profession": profession,
+                    "salary": salary,
+                  });
+                });
+
+                professionController.dispose();
+                salaryController.dispose();
+                Navigator.pop(context);
+              },
+              child: const Text('Добавить'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget _buildVacancyItem(Map<String, dynamic> item) {
     final String id = item["id"];
     final String profession = item["profession"];
     final int salary = item["salary"];
 
     return Container(
-      key: ValueKey(id),
+      key: ValueKey(id), // ✅ корректное сопоставление
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -59,11 +126,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
           const SizedBox(width: 10),
           GestureDetector(
             onTap: () => _deleteById(id),
-            child: const Icon(
-              Icons.delete,
-              color: Colors.red,
-              size: 28,
-            ),
+            child: const Icon(Icons.delete, color: Colors.red, size: 28),
           ),
         ],
       ),

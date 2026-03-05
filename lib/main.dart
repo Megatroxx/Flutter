@@ -5,6 +5,7 @@ import 'screens/catalog_screen.dart';
 import 'screens/favourites_screen.dart';
 import 'screens/applications_screen.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -33,11 +34,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  late final List<Widget> _screens = const [
-    CatalogScreen(),
-    FavoritesScreen(),
-    ApplicationsScreen(),
-  ];
+  final GlobalKey<CatalogScreenState> _catalogKey = GlobalKey();
+  final GlobalKey<FavoritesScreenState> _favoritesKey = GlobalKey();
+  final GlobalKey<ApplicationsScreenState> _applicationsKey = GlobalKey();
 
   String _titleByIndex(int index) {
     switch (index) {
@@ -52,13 +51,33 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void _onFabPressed() {
+    if (_currentIndex == 0) {
+      _catalogKey.currentState?.showAddDialog();
+    } else if (_currentIndex == 1) {
+      _favoritesKey.currentState?.showAddDialog();
+    } else {
+      _applicationsKey.currentState?.showAddDialog();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final screens = <Widget>[
+      CatalogScreen(key: _catalogKey),
+      FavoritesScreen(key: _favoritesKey),
+      ApplicationsScreen(key: _applicationsKey),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_titleByIndex(_currentIndex)),
       ),
-      body: _screens[_currentIndex],
+      body: screens[_currentIndex],
+      floatingActionButton: FloatingActionButton(
+        onPressed: _onFabPressed,
+        child: const Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedItemColor: Colors.green,
