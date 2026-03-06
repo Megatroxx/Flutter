@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/data/mock_jobs.dart';
-import '../../core/navigation/app_routes.dart';
 import '../../core/models/job.dart';
+import '../../core/navigation/app_routes.dart';
 import 'widgets/job_card.dart';
 
 class JobsScreen extends StatelessWidget {
@@ -22,6 +22,14 @@ class JobsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Вакансии'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.favorites);
+            },
+            icon: const Icon(Icons.favorite_border),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: jobs.length,
