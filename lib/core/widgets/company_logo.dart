@@ -1,39 +1,39 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CompanyLogo extends StatelessWidget {
-  final String path;
+  final String imageUrl;
   final double size;
   final double borderRadius;
 
   const CompanyLogo({
     super.key,
-    required this.path,
+    required this.imageUrl,
     this.size = 56,
     this.borderRadius = 12,
   });
 
   @override
   Widget build(BuildContext context) {
-    final hasPath = path.trim().isNotEmpty;
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
-      child: Container(
+      child: SizedBox(
         width: size,
         height: size,
-        color: Colors.black12,
-        child: hasPath
-            ? Image.asset(
-          path,
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
           fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) => Icon(
-            Icons.business,
-            size: size * 0.45,
+          progressIndicatorBuilder: (context, url, progress) =>
+          const Center(
+            child: CircularProgressIndicator(strokeWidth: 2),
           ),
-        )
-            : Icon(
-          Icons.business,
-          size: size * 0.45,
+          errorWidget: (context, url, error) => Container(
+            color: Colors.black12,
+            child: Icon(
+              Icons.business,
+              size: size * 0.45,
+            ),
+          ),
         ),
       ),
     );
