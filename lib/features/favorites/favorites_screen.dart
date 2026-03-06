@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../core/navigation/app_routes.dart';
 import '../../core/models/job.dart';
 import '../jobs/widgets/job_card.dart';
@@ -18,16 +19,16 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favorites = context.watch<FavoritesProvider>().favoriteJobs;
+    final favorites = context.watch<FavoritesProvider>().favorites;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Избранное'),
+        title: const Text('Избранные вакансии'),
       ),
       body: favorites.isEmpty
           ? const Center(
         child: Text(
-          'Избранных вакансий пока нет',
+          'Вы ещё не добавили вакансии в избранное',
           style: TextStyle(fontSize: 16),
         ),
       )
@@ -35,6 +36,7 @@ class FavoritesScreen extends StatelessWidget {
         itemCount: favorites.length,
         itemBuilder: (context, index) {
           final job = favorites[index];
+
           return JobCard(
             job: job,
             onTap: () => _openDetails(context, job),

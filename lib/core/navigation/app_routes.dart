@@ -1,5 +1,5 @@
 class AppRoutes {
-  static const String jobs = '/';
-  static const String jobDetail = '/job-detail';
-  static const String favorites = '/favorites';
+  static const jobs = '/';
+  static const jobDetail = '/job-detail';
+  static const favorites = '/favorites';
 }

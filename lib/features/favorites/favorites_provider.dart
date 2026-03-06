@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import '../../core/models/job.dart';
 
 class FavoritesProvider extends ChangeNotifier {
-  final List<Job> _favoriteJobs = [];
+  final List<Job> _favorites = [];
 
-  List<Job> get favoriteJobs => List.unmodifiable(_favoriteJobs);
+  List<Job> get favorites => List.unmodifiable(_favorites);
 
   bool isFavorite(Job job) {
-    return _favoriteJobs.any((item) => item.id == job.id);
+    return _favorites.any((item) => item.id == job.id);
   }
 
   void toggleFavorite(Job job) {
     if (isFavorite(job)) {
-      _favoriteJobs.removeWhere((item) => item.id == job.id);
+      _favorites.removeWhere((item) => item.id == job.id);
     } else {
-      _favoriteJobs.add(job);
+      _favorites.add(job);
     }
+
     notifyListeners();
   }
 }
