@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/models/job.dart';
+import '../../../core/widgets/company_logo.dart';
 
 class JobCard extends StatelessWidget {
   final Job job;
@@ -10,7 +12,6 @@ class JobCard extends StatelessWidget {
     required this.job,
     required this.onTap,
   });
-
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,11 @@ class JobCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _Logo(path: job.companyLogo),
+              CompanyLogo(
+                path: job.companyLogo,
+                size: 52,
+                borderRadius: 10,
+              ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -55,7 +60,6 @@ class JobCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             job.salary,
-                            style: const TextStyle(fontSize: 13),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -69,7 +73,6 @@ class JobCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             job.location,
-                            style: const TextStyle(fontSize: 13),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -77,37 +80,10 @@ class JobCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _Logo extends StatelessWidget {
-  final String path;
-
-  const _Logo({required this.path});
-
-  @override
-  Widget build(BuildContext context) {
-    final hasPath = path.trim().isNotEmpty;
-
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: Container(
-        width: 52,
-        height: 52,
-        color: Colors.black12,
-        child: hasPath
-            ? Image.asset(
-          path,
-          fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) => const Icon(Icons.business),
-        )
-            : const Icon(Icons.business),
       ),
     );
   }
