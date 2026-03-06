@@ -9,6 +9,7 @@ final List<Job> allJobs = [
     location: 'Москва / Remote',
     description: 'Разработка мобильных приложений на Flutter.',
     companyLogo: 'assets/images/companies/yandex.jpeg',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '2',
@@ -18,6 +19,7 @@ final List<Job> allJobs = [
     location: 'Москва',
     description: 'Разработка серверных сервисов и API.',
     companyLogo: 'assets/images/companies/sber.png',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '3',
@@ -27,6 +29,7 @@ final List<Job> allJobs = [
     location: 'Санкт-Петербург',
     description: 'Разработка мобильных функций социальной сети.',
     companyLogo: 'assets/images/companies/vk.png',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '4',
@@ -36,6 +39,7 @@ final List<Job> allJobs = [
     location: 'Remote',
     description: 'Разработка пользовательских интерфейсов.',
     companyLogo: 'assets/images/companies/tinkoff.jpg',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '5',
@@ -45,6 +49,7 @@ final List<Job> allJobs = [
     location: 'Москва',
     description: 'Анализ данных и построение отчетов.',
     companyLogo: 'assets/images/companies/ozon.png',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '6',
@@ -54,6 +59,7 @@ final List<Job> allJobs = [
     location: 'Москва',
     description: 'Тестирование веб и мобильных приложений.',
     companyLogo: 'assets/images/companies/wb.png',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '7',
@@ -63,6 +69,7 @@ final List<Job> allJobs = [
     location: 'Москва',
     description: 'Разработка Android-приложений.',
     companyLogo: 'assets/images/companies/yandex.jpeg',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '8',
@@ -72,6 +79,7 @@ final List<Job> allJobs = [
     location: 'Remote',
     description: 'Развитие продукта и управление командой.',
     companyLogo: 'assets/images/companies/ozon.png',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '9',
@@ -81,6 +89,7 @@ final List<Job> allJobs = [
     location: 'Москва',
     description: 'Настройка инфраструктуры и CI/CD.',
     companyLogo: 'assets/images/companies/sber.png',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
   Job(
     id: '10',
@@ -90,5 +99,6 @@ final List<Job> allJobs = [
     location: 'Санкт-Петербург',
     description: 'Проектирование пользовательских интерфейсов.',
     companyLogo: 'assets/images/companies/vk.png',
+    officeImage: 'assets/images/offices/tinkoff.jpg',
   ),
 ];

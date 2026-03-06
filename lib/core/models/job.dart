@@ -6,6 +6,7 @@ class Job {
   final String location;
   final String description;
   final String companyLogo;
+  final String officeImage;
 
   const Job({
     required this.id,
@@ -15,6 +16,7 @@ class Job {
     required this.location,
     this.description = '',
     this.companyLogo = '',
+    this.officeImage = '',
   });
 
   Job copyWith({
@@ -25,6 +27,7 @@ class Job {
     String? location,
     String? description,
     String? companyLogo,
+    String? officeImage,
   }) {
     return Job(
       id: id ?? this.id,
@@ -34,6 +37,7 @@ class Job {
       location: location ?? this.location,
       description: description ?? this.description,
       companyLogo: companyLogo ?? this.companyLogo,
+      officeImage: officeImage ?? this.officeImage,
     );
   }
 }

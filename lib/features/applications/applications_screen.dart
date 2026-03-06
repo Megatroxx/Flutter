@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/navigation/app_routes.dart';
 import '../../core/models/job.dart';
+import '../../core/navigation/app_routes.dart';
 import '../jobs/widgets/job_card.dart';
 import 'applications_provider.dart';
 
@@ -38,27 +38,52 @@ class ApplicationsScreen extends StatelessWidget {
           final application = applications[index];
           final job = application.job;
 
-          return Column(
-            children: [
-              JobCard(
-                job: job,
-                onTap: () => _openDetails(context, job),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Отправлено: ${application.appliedAt.day.toString().padLeft(2, '0')}.${application.appliedAt.month.toString().padLeft(2, '0')}.${application.appliedAt.year}',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: Card(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  JobCard(
+                    job: job,
+                    onTap: () => _openDetails(context, job),
+                  ),
+                  if (job.officeImage.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          job.officeImage,
+                          width: double.infinity,
+                          height: 180,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => Container(
+                            width: double.infinity,
+                            height: 180,
+                            color: Colors.black12,
+                            alignment: Alignment.center,
+                            child: const Icon(
+                              Icons.image_not_supported_outlined,
+                              size: 36,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                    child: Text(
+                      'Отправлено: ${application.appliedAt.day.toString().padLeft(2, '0')}.${application.appliedAt.month.toString().padLeft(2, '0')}.${application.appliedAt.year}',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-              const SizedBox(height: 8),
-            ],
+            ),
           );
         },
       ),
