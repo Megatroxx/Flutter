@@ -12,6 +12,7 @@ class CompanyLogo extends StatelessWidget {
     this.borderRadius = 12,
   });
 
+
   @override
   Widget build(BuildContext context) {
     final hasPath = path.trim().isNotEmpty;
