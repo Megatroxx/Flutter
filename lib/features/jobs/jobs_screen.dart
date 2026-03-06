@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../core/data/mock_jobs.dart';
 import '../../core/models/job.dart';
 import '../../core/navigation/app_routes.dart';
-
 import 'widgets/job_card.dart';
 
 class JobsScreen extends StatelessWidget {
@@ -27,13 +26,16 @@ class JobsScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(
-                context,
-                AppRoutes.favorites,
-              );
+              Navigator.pushNamed(context, AppRoutes.applications);
+            },
+            icon: const Icon(Icons.send_outlined),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.favorites);
             },
             icon: const Icon(Icons.favorite_border),
-          )
+          ),
         ],
       ),
       body: ListView.builder(

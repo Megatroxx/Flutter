@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/models/job.dart';
 import '../../../core/widgets/company_logo.dart';
+import '../../../core/widgets/job_meta_row.dart';
 
 class JobCard extends StatelessWidget {
   final Job job;
@@ -53,30 +54,14 @@ class JobCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Row(
-                      children: [
-                        const Icon(Icons.payments_outlined, size: 16),
-                        const SizedBox(width: 6),
-                        Expanded(
-                          child: Text(
-                            job.salary,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                    JobMetaRow(
+                      icon: Icons.payments_outlined,
+                      text: job.salary,
                     ),
                     const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        const Icon(Icons.place_outlined, size: 16),
-                        const SizedBox(width: 6),
-                        Expanded(
-                          child: Text(
-                            job.location,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                    JobMetaRow(
+                      icon: Icons.place_outlined,
+                      text: job.location,
                     ),
                   ],
                 ),

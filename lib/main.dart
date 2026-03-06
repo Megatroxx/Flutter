@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/navigation/app_routes.dart';
+import 'features/applications/applications_provider.dart';
 import 'features/favorites/favorites_provider.dart';
 
 void main() {
@@ -13,8 +14,15 @@ class JobsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => FavoritesProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => FavoritesProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ApplicationsProvider(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Job Aggregator',

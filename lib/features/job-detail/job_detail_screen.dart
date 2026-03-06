@@ -2,19 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/models/job.dart';
+import '../../core/navigation/app_routes.dart';
 import '../../core/widgets/company_logo.dart';
+import '../applications/applications_provider.dart';
 import '../favorites/favorites_provider.dart';
 
 class JobDetailScreen extends StatelessWidget {
-  const JobDetailScreen({super.key});
+  final Job job;
+
+  const JobDetailScreen({
+    super.key,
+    required this.job,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final job = ModalRoute.of(context)!.settings.arguments as Job;
-
     final favoritesProvider = context.watch<FavoritesProvider>();
-    final isFavorite = favoritesProvider.isFavorite(job);
+    final applicationsProvider = context.watch<ApplicationsProvider>();
 
+    final isFavorite = favoritesProvider.isFavorite(job);
+    final hasApplied = applicationsProvider.hasApplied(job);
 
     return Scaffold(
       appBar: AppBar(
@@ -78,25 +85,19 @@ class JobDetailScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('Отклик на вакансию'),
-                      content: const Text(
-                        'Функция отклика будет реализована на следующем этапе разработки.',
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text('Закрыть'),
-                        ),
-                      ],
-                    ),
+                onPressed: hasApplied
+                    ? null
+                    : () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoutes.applyForm,
+                    arguments: job,
                   );
                 },
                 icon: const Icon(Icons.send),
-                label: const Text('Откликнуться'),
+                label: Text(
+                  hasApplied ? 'Отклик уже отправлен' : 'Откликнуться',
+                ),
               ),
             ),
             const SizedBox(height: 12),
