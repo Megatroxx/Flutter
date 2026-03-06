@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/models/job.dart';
 import '../../core/navigation/app_routes.dart';
+import '../../core/widgets/empty_state_widget.dart';
 import '../jobs/widgets/job_card.dart';
 import 'applications_provider.dart';
 
@@ -26,11 +27,11 @@ class ApplicationsScreen extends StatelessWidget {
         title: const Text('Мои отклики'),
       ),
       body: applications.isEmpty
-          ? const Center(
-        child: Text(
-          'Вы ещё не отправили ни одного отклика',
-          style: TextStyle(fontSize: 16),
-        ),
+          ? const EmptyStateWidget(
+        imagePath: 'assets/images/empty/application.png',
+        title: 'Откликов пока нет',
+        subtitle:
+        'После отправки откликов они будут отображаться на этом экране.',
       )
           : ListView.builder(
         itemCount: applications.length,
@@ -39,7 +40,8 @@ class ApplicationsScreen extends StatelessWidget {
           final job = application.job;
 
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding:
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             child: Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +52,8 @@ class ApplicationsScreen extends StatelessWidget {
                   ),
                   if (job.officeImage.isNotEmpty)
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                      padding:
+                      const EdgeInsets.fromLTRB(12, 0, 12, 12),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset(
@@ -72,7 +75,8 @@ class ApplicationsScreen extends StatelessWidget {
                       ),
                     ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                    padding:
+                    const EdgeInsets.fromLTRB(16, 0, 16, 16),
                     child: Text(
                       'Отправлено: ${application.appliedAt.day.toString().padLeft(2, '0')}.${application.appliedAt.month.toString().padLeft(2, '0')}.${application.appliedAt.year}',
                       style: const TextStyle(

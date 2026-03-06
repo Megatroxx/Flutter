@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/navigation/app_routes.dart';
 import '../../core/models/job.dart';
+import '../../core/widgets/empty_state_widget.dart';
 import '../jobs/widgets/job_card.dart';
 import 'favorites_provider.dart';
 
@@ -26,11 +27,11 @@ class FavoritesScreen extends StatelessWidget {
         title: const Text('Избранные вакансии'),
       ),
       body: favorites.isEmpty
-          ? const Center(
-        child: Text(
-          'Вы ещё не добавили вакансии в избранное',
-          style: TextStyle(fontSize: 16),
-        ),
+          ? const EmptyStateWidget(
+        imagePath: 'assets/images/empty/263075.png',
+        title: 'Избранное пока пусто',
+        subtitle:
+        'Добавьте интересующие вакансии, чтобы вернуться к ним позже.',
       )
           : ListView.builder(
         itemCount: favorites.length,
