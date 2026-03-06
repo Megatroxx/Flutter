@@ -18,6 +18,7 @@ class ApplicationsScreen extends StatelessWidget {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     final applications = context.watch<ApplicationsProvider>().applications;
