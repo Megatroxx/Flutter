@@ -15,6 +15,7 @@ class JobDetailScreen extends StatelessWidget {
     final favoritesProvider = context.watch<FavoritesProvider>();
     final isFavorite = favoritesProvider.isFavorite(job);
 
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Детали вакансии'),
